@@ -19,7 +19,7 @@ func main() {
 	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "APP_VERSION=%s By TGJ", appVersion)
+		fmt.Fprintf(w, "APP_VERSION=%s By TGJ0.0.1", appVersion)
 		log.Printf("Receive GET request path = %s\n", r.RequestURI)
 	})
 	http.ListenAndServe(bind, nil)
