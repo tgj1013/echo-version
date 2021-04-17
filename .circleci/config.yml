@@ -3,7 +3,7 @@ jobs:
   # Golangビルド、テストのジョブ
   build:
     # (1) CircleCIコンテナのワーキングディレクトリ
-    working_directory: /go/src/github.com/gihyodocker/echo-version
+    working_directory: /go/src/github.com/tgj1013/echo-version
     # (2) ジョブを実行するコンテナのDockerイメージ
     docker:
       - image: golang:1.9-alpine
@@ -21,7 +21,7 @@ jobs:
             - . 
 
   docker_build_push:
-    working_directory: /go/src/github.com/gihyodocker/echo-version
+    working_directory: /go/src/github.com/tgj1013/echo-version
     docker:
       - image: docker:18.05.0-ce-dind # (7) dockerコマンドを利用できるコンテナ
     steps:
@@ -31,7 +31,7 @@ jobs:
           version: 18.05.0-ce
       - run: # (10) docker build
           name: docker image build
-          command: docker image build -t gihyodocker/echo-version:latest .
+          command: docker image build -t tgj1013/echo-version:latest .
       - run: # (11) ビルドイメージの確認
           name: show docker image ls
           command: docker image ls
@@ -40,7 +40,7 @@ jobs:
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: # (13) latestイメージをDocker Hubにpush
           name: release latest
-          command: docker image push gihyodocker/echo-version:latest 
+          command: docker image push tgj1013/echo-version:latest 
 
 workflows:
   version: 2
